@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <!-- status bar background -->
+    <View
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <!-- use this so the content is not hidden behind the action bar overlay -->
+    <Space
+        android:id="@+id/action_bar_padding"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:layout_weight=".33"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- dinosaur image and name -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="0.33"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.droid.mooresoft.materiallibrary.widgets.AvatarView
+                    android:id="@+id/dino_avatar_0"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:m_image="@mipmap/dino_poster" />
+
+                <TextView
+                    android:id="@+id/dino_name_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/light_text"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- dinosaur image and name -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="0.3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.droid.mooresoft.materiallibrary.widgets.AvatarView
+                    android:id="@+id/dino_avatar_1"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:m_image="@mipmap/dino_poster" />
+
+                <TextView
+                    android:id="@+id/dino_name_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/light_text"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- dinosaur image and name -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="0.33"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.droid.mooresoft.materiallibrary.widgets.AvatarView
+                    android:id="@+id/dino_avatar_2"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:m_image="@mipmap/dino_poster" />
+
+                <TextView
+                    android:id="@+id/dino_name_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/light_text"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.droid.mooresoft.materiallibrary.widgets.Card
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="0.66"
+        app:m_color="@android:color/white"
+        app:m_elevation="6dp"
+        app:m_force_z_reorder="false">
+
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:gravity="center_vertical"
+            android:hint="@string/lorem_ipsum"
+            android:padding="12dp"
+            android:textColor="@color/regular_text"
+            android:textSize="16sp" />
+    </com.droid.mooresoft.materiallibrary.widgets.Card>
+
+</LinearLayout>

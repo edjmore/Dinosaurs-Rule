@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.droid.mooresoft.materiallibrary.widgets.AvatarView
+        android:id="@+id/avatar"
+        android:layout_width="0dp"
+        android:layout_height="82dp"
+        android:layout_margin="8dp"
+        android:layout_weight=".25" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".7"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/dinosaur_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Dinosaur Name"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="by Artist Name"
+            android:textColor="@color/light_text" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/check_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:layout_weight=".05"
+        android:src="@mipmap/purple_check" />
+</LinearLayout>

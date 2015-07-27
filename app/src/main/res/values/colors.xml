@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cream">#eeeeee</color>
+    <color name="dark_text">#020202</color>
+    <color name="regular_text">#777777</color>
+    <color name="light_text">#9b9b9b</color>
+    <color name="orange">#e2a607</color>
+    <color name="magenta">#a26dae</color>
+    <color name="status_bar">#d29607</color>
+
+    <drawable name="normal_background">@color/cream</drawable>
+    <drawable name="selected_background">@color/magenta</drawable>
+</resources>

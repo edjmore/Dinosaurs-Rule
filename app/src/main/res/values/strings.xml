@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">Stamford Downtown: Art in Public Places</string>
+    <string name="drawer_open">Open Navigation Menu</string>
+    <string name="drawer_close">Close Navigation Menu</string>
+    <string name="exhibit_title">Dinosaurs Rule!</string>
+    <string name="key_dinos_visited">key_dinos_visited</string>
+
+    <!-- dummy text -->
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <!-- artist bios -->
+    <string name="daniel_adams">Daniel Adams is an illustrator/graphic designer from Stamford CT. He graduated
+from Pratt Institute with a Bachelors degree in Illustration and an Associates
+degree in Graphic Design. Daniel currently works as a full time designer
+and a freelance illustrator for various magazines and websites around the
+United States and Canada. www.danielwadams.com</string>
+    <string name="aubrey_booska_and_michelle_genuario">Aubrey and Michelle teach art in Stratford, encouraging students to participate
+in community arts projects like this exhibit. They are delighted to be working
+as the artists for this event. Inspired by the impact of this amazing exhibit,
+they are co-chairing an exhibit this summer, Share a Chair 2015, in Stratford, CT.
+For more information, please visit: www.townofstratford.com/stratfordstreetsculpture.</string>
+    <string name="nina_bentley">Nina Bentley exhibits in Europe and America. She has created over 100 shoe
+sculptures and many paintings. For Stamford Downtown she has created a
+cow on ice skates, two cars, two cats, a horse cut in half and two benches.
+See her work at: www.ninabentley.com</string>
+    <string name="shelita_birchett_benash">Birchett Benash is a self-taught multi-media artist and curator. Her mosaic works
+have been publicly and privately commissioned. Recycled materials are integral to
+her work, as salvaged components are transformed into visual metaphors. Birchett
+Benash lives on an old farm in the Shawangunk Mountains of upstate New York.</string>
+    <string name="patrick_s_brittin">Patrick Brittin was born in Pennsylvania and is currently living and working in
+Bridgeport, CT. Patrick is a 31 year old Veteran of the United States Air Force.
+Patrick\'s art was on display at Westport Art Gallery. He has been tattooing for
+10 years, and still is a tattoo artist.</string>
+    <string name="michael_callahan">Michael Callahan is a photographer, graphic designer, fine artist, commercial
+illustrator and creative director with over 20 years experience in traditional and
+digital media, visual communications and design. A Stamford native, Michael
+holds a BFA in illustration at the School of Visual Arts, NYC.</string>
+    <string name="alicia_cobb">Alicia was born and raised in Stamford. She\'s a self-taught artist who specializes
+in fine body art and acrylic painting. Her body art has been featured in
+several Connecticut college cultural events since 2009 and has gone on to
+feature in other venues in NY and New Orleans. www.artsimplicated.com</string>
+    <string name="krista_colavito">From a very early age, Krista Colavito has loved to paint, draw, and sketch. Particularly
+inspired by nature, her creativity also finds an outlet in cake decoration,
+sewing and crochet. She is enthusiastic about bringing these experiences to a new
+medium and larger scale.</string>
+    <string name="sarah_dacres_and_laura_dacres">The Dacres sisters share a love of tiny-armed dinosaurs, fiberglass and studded
+leather. Laura is studying art education at Southern Connecticut State University
+in New Haven and enjoys sewing and collage. Sarah is a braillist in Raleigh,
+North Carolina and this is her third public art piece.</string>
+    <string name="jeannette_done_lagemann_and_team_purdue">Jeannette Doné-Lagemann is an avid photographer and a passionate mixedmedia
+artist. Her ongoing travels and art studies help quench her thirst for
+fun and learning. Visit www.JDL-art.com and follow her Instagram @artbyJDL.
+Enjoy how Jeannette captures the fleeting moment and illuminates the
+permanent detail through her artwork. Catch her optimism and joie de vivre!</string>
+    <string name="sean_dudley">Sean Dudley is a designer residing in Bridgeport, CT and is currently the
+Graphic and Web Director at Voices of September 11th, located in New Canaan,
+CT. With familiarity in web and graphics, Sean designs logos, websites, print
+material and much more. You can learn more by visiting www.seandud.com.</string>
+    <string name="valeska_dudley">Born in Valparaiso, Chile, Valeska came to the United States when she was
+12 years old. She has won numerous awards and honorable mentions through
+her artistic career. Last Summer Valeska made a debut with a Bench sculpture
+titled “Starry Bench” for the art in public places exhibit. This year, Valeska is
+showcasing a Dino in the shape of a Volkswagen Beetle and a glow in the
+dark Brachiosaurus.</string>
+    <string name="nicholas_dylewsky">Nicholas Dylewsky is a retired printer and graphic artist. He enjoys model
+railroading, gardening, painting, and woodworking. He is a native of Stamford,
+where he lives with his wife Sandy and their three cats, Pearl, Jasper, and Alice.</string>
+    <string name="lisa_eisenman_salley">Lisa is an artist and floral designer and owner of Something Special located in
+Old Greenwich. She has been painting and fabricating works of art for 35 years
+and has an extensive knowledge of paints, materials and application. She paints
+furniture, walls, floors, ceilings, exterior signs and outdoor art for commercial
+businesses and private homeowners. She has participated in numerous Stamford
+Downtown projects including Cow Parade, Cars, Horses, Benches and Signal
+boxes.</string>
+    <string name="silvia_fernandez_stein">Silvia studied art at the University of Chile. In Stamford she has participated
+in community art programs with the Connecticut Commission on the Arts and
+Stamford Public Schools. She has also painted murals in Mill River Park and
+utility boxes in Glenbrook. Silvia has exhibited at Stamford Museum,
+Housatonic College and University of Connecticut.</string>
+    <string name="tina_fino">Tina Fino was born and raised in Stamford and now calls Brooklyn her home.
+Fino is a Creative Director who loves sign painting, gold gilding and all things
+hand crafted including tacos. This will be Fino\'s 3rd time participating in
+Stamford Downtown’s "Art in Public Places."</string>
+    <string name="francine_funke">Francine Funke is an accomplished, multi-faceted artist whose unique creations
+range from paintings on canvas, works on paper, photography, murals
+and installations. Her work has been exhibited in Tiffany and Company’s Windows,
+NYC, Mixed Greens Gallery, NYC, and in galleries and major museums
+across the country. Visit her website: www.francinefunke.com</string>
+    <string name="mark_greenbaum">A doodler, photographer, animator, graphic designer and cartoonist by day
+and a collector of rare Bavarian cheese sculptures by night. Mark relishes any
+opportunity to express his creative soul, especially if it means creating weird
+third-person bio\'s about himself. His favorite color is glaucous. He has 512
+different facial expressions, 3 of which are deemed almost appropriate for
+public display. See more of his work online at www.greenbombstudios.com</string>
+    <string name="laurie_a_guzda">Laurie A. Guzda is the Creative Director of LAGuzda, Creative Arts and Services, a
+boutique agency for marketing, branding, PR and more, specializing in Hospitality.
+Laurie is an avid photographer, artist and writer. She also teaches comedy improv
+workshops for business, actors and fun. Visit her website at: www.LAGuzda.com.</string>
+    <string name="flavia_lodato">Growing up in Brazil, Flavia has always been passionate about art. Painting,
+music and dance are a strong part of her culture and her life. The art of colors,
+rhythms and movements are closely connected in her work as a costume and
+fashion designer, belly dance teacher, choreographer and performer</string>
+    <string name="david_macharelli">With an abiding love of art and history, David combines painting, sculptural and faux
+finish techniques to create whimsical pieces strongly rooted in the classics. He is
+delighted to again be among the talented field gracing the streets of Stamford
+Downtown, where his previous works include: The Cat’s Amphora, Equus Caesar,
+and The Time Machine. A yoga teacher, museum worker and amateur actor, he
+shares life with his wife, Shannon, two cats and a pug.</string>
+    <string name="amrita_majumder">Amrita is a management graduate who became a full time artist to pursue
+her love for art. Born in India and relocated to Stamford, Amrita works in oil,
+acrylic and pencil capturing nature and emotions. Her work has been
+exhibited in numerous juried shows. Amrita enjoys sharing her love for
+painting by teaching art at her studio.</string>
+    <string name="sooo_z_mastropietro">As a mixed media artist and classical musician, Sooo-z gathers inspiration
+through a mélange of synergistic creative forces which provide a momentum
+of artistic inertia. Color, texture, composition, humor and irony are essential
+elements to her work giving way to limitless endeavors infused with spirited
+experimentation and calculated execution.</string>
+    <string name="rosemary_mcclain">Rosemary is a designer, teacher, fine artist and ceramic sculptor. She exhibits
+her work in galleries and shows in Connecticut. She is presently focusing her
+attention on her ceramic creations with the emphasis on color. Rosemary loves
+to draw and paint and finds great joy in gardening.</string>
+    <string name="barbara_post_campbell">Barbara Post Campbell graduated from the Fashion Institute of Technology
+in New York where she studied design and fine arts. Barbara has participated
+in numerous juried and invitational shows including several solo exhibitions.
+Her work includes photography, encaustic painting, collage and mixed
+medium with organic elements rich in color and movement.</string>
+    <string name="christian_sanders">Izzy Ice</string>
+    <string name="pat_satchfield_collins">Pat paints in oils, acrylic, gouache and water color. Subjects range from landscape,
+people and animals. Besides "Barkalounger" and "American Beauty"
+for Stamford Downtown Art In Public Spaces Exhibits, Pat has painted many
+house, people and dog portraits, and illustrated a children\'s book, "A Cookie
+For The President."</string>
+    <string name="sandra_l_stadtmiller">Sandra L. Stadtmiller is an award-winning graphic designer and illustrator.
+She is co-owner of Seaside Design. She lives in Stamford with her husband
+Nick and their three cats.</string>
+    <string name="david_verdosci">David Verdosci is an artist from Thomaston, Connecticut. He has worked in
+the arts since a very young age. He paints in acrylics and oil. His style ranges
+from classical realism to impressionism. His paintings hang in private and
+public collections. "My main inspiration is the Joy of Everyday Life"- David</string>
+</resources>

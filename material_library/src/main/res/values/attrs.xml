@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Material">
+        <attr name="m_color" format="color" />
+        <attr name="m_elevation" format="dimension" />
+        <attr name="m_icon" format="reference" />
+        <attr name="m_image" format="reference" />
+        <attr name="m_force_z_reorder" format="boolean" />
+    </declare-styleable>
+</resources>
