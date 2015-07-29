@@ -8,9 +8,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -45,6 +49,17 @@ public class ArtistDetailActivity extends Activity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
+        setShareIntent(new Intent(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, mArtistName == null ? "Dinosaurs Rule! at Stamford Downtown" : mArtistName)
+                .setType("text/plain"));
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artist_detail_activity);
@@ -54,7 +69,7 @@ public class ArtistDetailActivity extends Activity {
             padding.getLayoutParams().height = 0; // remove padding
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setUpIndicator(R.mipmap.ic_action_back);
+        getActionBar().setLogo(R.mipmap.ic_action_back);
         setStatusBarColor(findViewById(R.id.status_bar), getResources().getColor(R.color.status_bar));
 
         String artistName = getIntent().getStringExtra(KEY_NAME);
@@ -80,6 +95,8 @@ public class ArtistDetailActivity extends Activity {
         tv0.setText(mDinos[0].getName());
         if (b1 != null) tv1.setText(mDinos[1].getName());
         if (b2 != null) tv2.setText(mDinos[2].getName());
+
+        mArtistName = artistName;
     }
 
     private void launchDinosaurDetailActivity(Dinosaur dino) {
@@ -103,6 +120,12 @@ public class ArtistDetailActivity extends Activity {
         return dinos;
     }
 
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
+    }
+
     private boolean displayArtistBio(String artistName, TextView dstView) {
         int resId = getResources().getIdentifier(getArtistResourceName(artistName), "string", getPackageName());
         if (resId > 0) {
@@ -119,14 +142,6 @@ public class ArtistDetailActivity extends Activity {
                 .replace("é", "e")
                 .replace(".", "")
                 .replace("&", "and");
-    }
-
-    private void setUpIndicator(int resId) {
-        int viewId = getResources().getIdentifier("up", "id", "android");
-        if (viewId > 0) {
-            ImageView iv = (ImageView) findViewById(viewId);
-            iv.setImageResource(resId);
-        }
     }
 
     private int getStatusBarHeight() {
@@ -151,4 +166,6 @@ public class ArtistDetailActivity extends Activity {
 
     private final OnAvatarClickListener mClickListener = new OnAvatarClickListener();
     private Dinosaur[] mDinos;
+    private ShareActionProvider mShareActionProvider;
+    private String mArtistName;
 }

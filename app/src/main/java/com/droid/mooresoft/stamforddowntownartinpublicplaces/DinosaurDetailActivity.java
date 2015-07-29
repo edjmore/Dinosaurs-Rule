@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SoundEffectConstants;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +49,17 @@ import java.text.SimpleDateFormat;
 public class DinosaurDetailActivity extends Activity {
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
+        setShareIntent(new Intent(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, mDino == null ? "Dinosaurs Rule! at Stamford Downtown" : mDino.getName() + " by " + mDino.getArtist())
+                .setType("text/plain"));
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
@@ -66,7 +80,7 @@ public class DinosaurDetailActivity extends Activity {
             padding.getLayoutParams().height = 0; // remove padding
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setUpIndicator(R.mipmap.ic_action_back);
+        getActionBar().setLogo(R.mipmap.ic_action_back);
         setStatusBarColor(findViewById(R.id.status_bar), getResources().getColor(R.color.status_bar));
 
         // load dinosaur data from intent
@@ -183,6 +197,12 @@ public class DinosaurDetailActivity extends Activity {
         }
     }
 
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
+    }
+
     private void updatePreferences(Dinosaur dinosaur, boolean visited) {
         // update if the person has visited this dinosaur or not
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(DinosaurDetailActivity.this);
@@ -221,14 +241,6 @@ public class DinosaurDetailActivity extends Activity {
         mImageFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 fileName);
         return mImageFile;
-    }
-
-    private void setUpIndicator(int resId) {
-        int viewId = getResources().getIdentifier("up", "id", "android");
-        if (viewId > 0) {
-            ImageView iv = (ImageView) findViewById(viewId);
-            iv.setImageResource(resId);
-        }
     }
 
     private int getStatusBarHeight() {
@@ -305,4 +317,5 @@ public class DinosaurDetailActivity extends Activity {
     private File mImageFile;
     private GoogleMap mGoogleMap;
     private Dinosaur mDino;
+    private ShareActionProvider mShareActionProvider;
 }

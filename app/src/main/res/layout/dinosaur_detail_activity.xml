@@ -136,8 +136,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:clipChildren="false"
                     android:layout_marginLeft="8dp"
+                    android:clipChildren="false"
                     android:clipToPadding="false"
                     android:gravity="center_horizontal|bottom"
                     android:orientation="vertical">
@@ -152,16 +152,16 @@
                         android:id="@+id/visited_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
                         android:layout_marginBottom="24dp"
+                        android:layout_marginTop="2dp"
                         android:text="visited?" />
 
                     <com.droid.mooresoft.materiallibrary.widgets.FloatingActionButton
                         android:id="@+id/camera_button"
                         android:layout_width="66dp"
                         android:layout_height="66dp"
-                        android:layout_margin="8dp"
                         android:layout_gravity="bottom"
+                        android:layout_margin="8dp"
                         app:m_color="@color/magenta"
                         app:m_elevation="16dp"
                         app:m_icon="@mipmap/ic_action_camera" />

@@ -112,7 +112,6 @@ public class AvatarView extends MaterialView {
 
         mBitmapIsDirty = false;
         // cleanup
-        resizedImage.recycle();
         mPaint.reset();
     }
 

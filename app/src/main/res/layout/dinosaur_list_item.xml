@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".7"
+        android:layout_weight=".695"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="8dp">
@@ -40,6 +40,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        android:layout_weight=".05"
-        android:src="@mipmap/purple_check" />
+        android:layout_weight=".055"
+        android:src="@mipmap/purple_check_alt" />
 </LinearLayout>

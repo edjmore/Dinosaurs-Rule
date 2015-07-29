@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.WindowManager;
 
 import java.io.File;
 import java.io.InputStream;
@@ -18,18 +22,29 @@ public class LaunchHelperActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.launch_helper_activity);
+        getActionBar().hide();
+        setStatusBarColor(findViewById(R.id.status_bar), getResources().getColor(R.color.status_bar));
+
+        mStartTime = System.currentTimeMillis();
 
         // has the dinosaur database been created yet?
         boolean exists = checkForDatabase();
         if (!exists) {
-            // TODO: display loading screen?
-
             // need to create the database
             initDatabase();
         }
 
-        startActivity(new Intent(this, NavigationDrawerActivity.class));
-        finish();
+        long elapsed = System.currentTimeMillis() - mStartTime;
+        long delay = mActivityDuration - elapsed;
+        delay = delay > 0 ? delay : 0;
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(LaunchHelperActivity.this, NavigationDrawerActivity.class));
+                finish();
+            }
+        }, delay);
     }
 
     private boolean checkForDatabase() {
@@ -74,4 +89,26 @@ public class LaunchHelperActivity extends Activity {
         // avoid database leak
         db.close();
     }
+
+    private int getStatusBarHeight() {
+        int id = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return id > 0 ? getResources().getDimensionPixelSize(id) : 0;
+    }
+
+    private void setStatusBarColor(View statusBar, int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // this will only work on devices running KitKat or higher
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+            // resize and color the background view to make the transluscent status bar
+            // appear colored
+            statusBar.getLayoutParams().height = getStatusBarHeight();
+            statusBar.setBackgroundColor(color);
+        }
+    }
+
+    private final Handler mHandler = new Handler();
+    private long mStartTime;
+    private final int mActivityDuration = 1000; // milliseconds
 }

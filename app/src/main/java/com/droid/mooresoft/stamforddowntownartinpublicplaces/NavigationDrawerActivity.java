@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,22 +19,28 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.Layout;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ShareActionProvider;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -47,6 +54,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.File;
@@ -68,7 +76,11 @@ public class NavigationDrawerActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
+        mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_item_share).getActionProvider();
+        setShareIntent(new Intent(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, "Dinosaurs Rule! at Stamford Downtown")
+                .setType("text/plain"));
+        return true;
     }
 
     @Override
@@ -82,7 +94,8 @@ public class NavigationDrawerActivity extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(GravityCompat.START);
-        // TODO: disable or enable items based on drawer and content state
+        // disable or enable items based on drawer and content state
+        menu.findItem(R.id.menu_item_share).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -103,6 +116,7 @@ public class NavigationDrawerActivity extends Activity {
 
         mTitle = mDrawerTitle = getTitle();
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setLogo(R.mipmap.ic_drawer);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
@@ -124,6 +138,15 @@ public class NavigationDrawerActivity extends Activity {
         String[] drawerTitles = getResources().getStringArray(R.array.drawer_options);
         mDrawerList.setAdapter(new ArrayAdapter(this, R.layout.drawer_list_item, drawerTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        ImageView iv = (ImageView) mDrawerLayout.findViewById(R.id.hero_image);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // just need this to ensure that the click event is
+                // handled and not passed to any views underneath
+            }
+        });
 
         if (getIntent() != null && getIntent().hasExtra(KEY_SHOW_SPONSORS)) {
             if (getIntent().getBooleanExtra(KEY_SHOW_SPONSORS, false)) {
@@ -153,6 +176,12 @@ public class NavigationDrawerActivity extends Activity {
                 checkView.setVisibility(
                         mClickedDinosaur.wasVisited(NavigationDrawerActivity.this) ? View.VISIBLE : View.INVISIBLE);
             }
+        }
+    }
+
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
         }
     }
 
@@ -232,8 +261,23 @@ public class NavigationDrawerActivity extends Activity {
         getFragmentManager().beginTransaction().replace(R.id.content, mapFragment).commit();
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
+            public void onMapReady(final GoogleMap googleMap) {
                 googleMap.setMyLocationEnabled(true);
+                googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        mapFragment.getView().playSoundEffect(SoundEffectConstants.CLICK);
+                        String dinoName = marker.getTitle();
+                        Cursor c = mDatabase.query(DatabaseContract.Entries.TABLE_NAME, null, DatabaseContract.Entries.COLUMN_NAME_NAME + " = ?",
+                                new String[]{dinoName}, null, null, null);
+                        if (c.moveToFirst()) {
+                            Dinosaur d = new Dinosaur(c);
+                            Intent viewDino = new Intent(NavigationDrawerActivity.this, DinosaurDetailActivity.class)
+                                    .putExtra(Dinosaur.KEY, d.toBundle());
+                            startActivity(viewDino);
+                        }
+                    }
+                });
 
                 // add a marker for every dinosaur in the cursor
                 mData.moveToFirst();
@@ -245,7 +289,13 @@ public class NavigationDrawerActivity extends Activity {
                             .snippet("by " + dino.getArtist())
                             .icon(BitmapDescriptorFactory.defaultMarker( // visited dinosaurs will be magenta and unvisited will be orange
                                     dino.wasVisited(NavigationDrawerActivity.this) ? BitmapDescriptorFactory.HUE_MAGENTA : BitmapDescriptorFactory.HUE_ORANGE));
-                    googleMap.addMarker(markerOptions);
+                    Marker marker = googleMap.addMarker(markerOptions);
+
+                    // want to give the desired marker focus
+                    if (target != null && marker.getPosition().latitude == target.latitude &&
+                            marker.getPosition().longitude == target.longitude) {
+                        marker.showInfoWindow();
+                    }
                 } while (mData.moveToNext());
             }
         });
@@ -380,7 +430,21 @@ public class NavigationDrawerActivity extends Activity {
                 RelativeLayout relativeLayout = (RelativeLayout) inflater.inflate(R.layout.downtown_stamford_fragment, null);
                 mWebView = (WebView) relativeLayout.findViewById(R.id.webview);
                 mWebView.getSettings().setJavaScriptEnabled(true);
-                mWebView.loadUrl("http://stamford-downtown.com/");
+                mWebView.loadUrl(URL);
+
+                final ProgressBar progressBar = (ProgressBar) relativeLayout.findViewById(R.id.progress);
+                progressBar.setVisibility(View.VISIBLE);
+                mWebView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
 
                 // allow use to open the site in their default browser
                 final FloatingActionButton fab = (FloatingActionButton) relativeLayout.findViewById(R.id.browser_button);
@@ -443,6 +507,8 @@ public class NavigationDrawerActivity extends Activity {
             KEY_MAP_TARGET_LONGITUDE = "key_map_target_longitude";
     public static final String KEY_SHOW_SPONSORS = "key_show_sponsors";
 
+    public static final String URL = "http://stamford-downtown.com/";
+
     private int mCurrentDrawer = -1;
     private ListFragment mDinosaurFragment;
     private View mClickedView;
@@ -455,4 +521,5 @@ public class NavigationDrawerActivity extends Activity {
     private Cursor mData;
     private BitmapManager mBitmapManager = new BitmapManager(NavigationDrawerActivity.this);
     private SQLiteDatabase mDatabase;
+    private ShareActionProvider mShareActionProvider;
 }
